@@ -48,4 +48,5 @@ public abstract class Produto {
         this.estoqueMinimo = estoqueMinimo;
         this.quantidade = quantidade;
     }
+      public abstract String getCategoria();
 }
