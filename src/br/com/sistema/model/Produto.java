@@ -49,4 +49,20 @@ public abstract class Produto {
         this.quantidade = quantidade;
     }
       public abstract String getCategoria();
+
+    public void adicionarQuantidade(int quantidade){
+        if (quantidade <= 0){
+            throw new IllegalArgumentException("A quantidade de itens adicionado deve ser maior que zero");
+        }
+        this.quantidade += quantidade;
+    }
+
+    public void removerQuantidade(int quantidade){
+        if (quantidade <= 0){
+            throw new IllegalArgumentException("A quantidade de itens removidos deve ser maior que zero");
+        }
+        this.quantidade -= quantidade;
+    }
+
+    public abstract String exibirDetalhes();
 }
