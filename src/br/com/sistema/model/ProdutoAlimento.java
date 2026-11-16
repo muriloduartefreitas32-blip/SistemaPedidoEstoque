@@ -21,4 +21,9 @@ public class ProdutoAlimento extends Produto {
         return "Alimento";
     }
 
+    @Override
+    public String exibirDetalhes(){
+        return "A validade do alimento é: " + getValidade();
+    }
+
 }

@@ -5,10 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Pedido {
+
     public enum Situacao{
-        Aberto,
-        Finalizado
+        ABERTO,
+        FINALIZADO
     }
+
     private static int proximoNumero = 1;
     private int numero;
     private List<ItemPedido> itens;
@@ -17,11 +19,13 @@ public class Pedido {
     public Pedido(){
         this.numero = proximoNumero++;
         this.itens = new ArrayList<>();
-        this.situacao = Situacao.Aberto;
+        this.situacao = Situacao.ABERTO;
     }
+
     public int getNumero(){
         return numero;
     }
+
     public Situacao getSituacao(){
         return situacao;
     }
@@ -29,25 +33,28 @@ public class Pedido {
     public List<ItemPedido> getItens() {
         return Collections.unmodifiableList(itens);
     }
+
     public void adicionarItem(Produto produto, int quantidade){
-        if(situacao == Situacao.Finalizado){
+        if(situacao == Situacao.FINALIZADO){
             throw new IllegalStateException("Não é possivel alterar um pedido finalizado");
         }
         if(produto == null){
             throw new IllegalArgumentException("O produto é obrigatório");
         }
-        int quantidadeJaadicionada = 0;
+
+        int quantidadeJaAdicionada = 0;
 
         for(ItemPedido item : itens){
             if(item.getProduto().getCodigo().equals(produto.getCodigo())){
-                quantidadeJaadicionada += item.getQuantidade();
+                quantidadeJaAdicionada += item.getQuantidade();
             }
         }
-        if(quantidade + quantidadeJaadicionada > produto.getQuantidade()){
+        if(quantidade + quantidadeJaAdicionada > produto.getQuantidade()){
             throw new IllegalStateException("Estoque insuficiente");
         }
         itens.add(new ItemPedido(produto, quantidade));
     }
+
     public double calcularTotal(){
         double total = 0;
 
@@ -56,14 +63,15 @@ public class Pedido {
         }
         return total;
     }
+
     public void finalizar(){
-        if(situacao == Situacao.Finalizado){
+        if(situacao == Situacao.FINALIZADO){
             throw new IllegalStateException("O pedido já foi finalizado");
         }
         if(itens.isEmpty()){
             throw new IllegalStateException("Não é possivel finalizar um pedido sem itens");
         }
-        situacao = Situacao.Finalizado;
+        situacao = Situacao.FINALIZADO;
     }
 
 }

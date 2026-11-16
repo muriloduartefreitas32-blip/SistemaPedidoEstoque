@@ -3,6 +3,13 @@ package br.com.sistema.model;
 public class ProdutoEletronico extends Produto {
     private int mesesGarantia;
 
+    @Override
+    public String toString() {
+        return "ProdutoEletronico{" +
+                "mesesGarantia=" + mesesGarantia +
+                '}';
+    }
+
     public ProdutoEletronico(String codigo, String nome, int quantidade, int estoqueMinimo, double preco, int mesesGarantia) {
         super(codigo, nome, quantidade, estoqueMinimo, preco);
 
@@ -21,5 +28,10 @@ public class ProdutoEletronico extends Produto {
     @Override
     public String getCategoria(){
         return "Eletrônico";
+    }
+
+    @Override
+    public String exibirDetalhes(){
+        return "Meses de Garantia do produto: " + getMesesGarantia();
     }
 }
