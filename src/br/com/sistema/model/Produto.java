@@ -48,8 +48,6 @@ public abstract class Produto {
         this.estoqueMinimo = estoqueMinimo;
         this.quantidade = quantidade;
     }
-      public abstract String getCategoria();
-
     public void adicionarQuantidade(int quantidade){
         if (quantidade <= 0){
             throw new IllegalArgumentException("A quantidade de itens adicionado deve ser maior que zero");
@@ -63,6 +61,8 @@ public abstract class Produto {
         }
         this.quantidade -= quantidade;
     }
+
+    public abstract String getCategoria();
 
     public abstract String exibirDetalhes();
 }
