@@ -1,8 +1,6 @@
 package br.com.sistema.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Pedido {
 
@@ -41,6 +39,9 @@ public class Pedido {
         if(produto == null){
             throw new IllegalArgumentException("O produto é obrigatório");
         }
+        if (quantidade <= 0){
+            throw  new IllegalArgumentException("A quantidade deve ser maior que 0");
+        }
 
         int quantidadeJaAdicionada = 0;
 
@@ -53,6 +54,14 @@ public class Pedido {
             throw new IllegalStateException("Estoque insuficiente");
         }
         itens.add(new ItemPedido(produto, quantidade));
+    }
+
+    public Map<String, Integer> quantidadePorCodigo() {
+        Map<String, Integer> mapa = new LinkedHashMap<>();
+        for (ItemPedido item : itens) {
+            mapa.merge(item.getProduto().getCodigo(), item.getQuantidade(), Integer::sum);
+        }
+        return mapa;
     }
 
     public double calcularTotal(){
