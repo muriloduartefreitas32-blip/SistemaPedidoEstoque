@@ -65,4 +65,11 @@ public abstract class Produto {
     public abstract String getCategoria();
 
     public abstract String exibirDetalhes();
+
+    @Override
+    public String toString() {
+        return String.format("[%s] %-18s %-11s qtd: %3d (mín. %d) | %s | %s",
+                codigo, nome, getCategoria(), quantidade, estoqueMinimo,
+                String.format("R$ %.2f", preco), exibirDetalhes());
+    }
 }
