@@ -66,6 +66,10 @@ public abstract class Produto {
 
     public abstract String exibirDetalhes();
 
+    public boolean estaAbaixoDoMinimo(){
+        return quantidade <= estoqueMinimo;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %-18s %-11s qtd: %3d (mín. %d) | %s | %s",
