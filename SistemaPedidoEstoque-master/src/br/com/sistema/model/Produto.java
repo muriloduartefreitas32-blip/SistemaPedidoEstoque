@@ -48,25 +48,31 @@ public abstract class Produto {
         this.estoqueMinimo = estoqueMinimo;
         this.quantidade = quantidade;
     }
-    public void adicionarQuantidade(int quantidade){
-        if (quantidade <= 0){
+
+    public void adicionarQuantidade(int quantidade) {
+        if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade de itens adicionado deve ser maior que zero");
         }
         this.quantidade += quantidade;
     }
 
-    public void removerQuantidade(int quantidade){
-        if (quantidade <= 0){
+    public void removerQuantidade(int quantidade) {
+        if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade de itens removidos deve ser maior que zero");
+        }
+        if (quantidade > this.quantidade) {
+            throw new IllegalStateException("Estoque insuficiente.");
+
         }
         this.quantidade -= quantidade;
     }
+
 
     public abstract String getCategoria();
 
     public abstract String exibirDetalhes();
 
-    public boolean estaAbaixoDoMinimo(){
+    public boolean estaAbaixoDoMinimo() {
         return quantidade <= estoqueMinimo;
     }
 

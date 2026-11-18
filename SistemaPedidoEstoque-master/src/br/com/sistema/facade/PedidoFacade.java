@@ -109,4 +109,14 @@ public class PedidoFacade {
 
         return texto.toString();
     }
+    public Produto consultarProduto(String codigo){
+        return estoque.buscar(codigo);
+    }
+    public void reporEstoque(String codigo, int quantidade){
+        estoque.repor(codigo, quantidade);
+    }
+    public void retirarEstoque(String codigo, int quantidade){
+        estoque.baixar(codigo, quantidade);
+    }
+
 }
